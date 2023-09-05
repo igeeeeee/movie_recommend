@@ -21,9 +21,10 @@ movie_id_to_genre = dict(zip(movie_ids, movie_genre))
 
 st.markdown("## 1本の映画に対して似ている映画を表示する")
 
-name = st.text_input('映画の名前を入力', ' ')
+name = st.text_input('映画の名前を入力', 'Killing, The')
 now_title = ""
 now_cost = 9999999999
+print(name)
 for titl in movie_titles:
     n = len(name)
     tmp_title = ""
@@ -40,8 +41,10 @@ for titl in movie_titles:
         for j in range(m):
             if(name[i] == tmp_title[j]):
                 dp[i+1][j+1] = min(dp[i+1][j+1],dp[i][j])
-            dp[i+1][j] = min(dp[i+1][j],dp[i][j] + 1)
-            dp[i][j+1] = min(dp[i][j+1],dp[i][j]+1)
+            
+            dp[i+1][j+1] = min(dp[i+1][j+1],dp[i+1][j] + 1)
+            dp[i+1][j+1] = min(dp[i+1][j+1],dp[i][j+1]+1)
+    print(dp[n][m])
     if(now_cost > dp[n][m]):
         now_title = titl
         now_cost = dp[n][m]
