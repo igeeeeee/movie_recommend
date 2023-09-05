@@ -21,7 +21,7 @@ movie_id_to_genre = dict(zip(movie_ids, movie_genre))
 
 st.markdown("## 1本の映画に対して似ている映画を表示する")
 
-name = st.text_input('映画の名前を入力', 'Killing, The')
+name = st.text_input('映画の名前を入力(年は不要)', 'Killing, The')
 now_title = ""
 now_cost = 9999999999
 print(name)
