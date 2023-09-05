@@ -23,8 +23,5 @@ streamlit run app.py
 ```
 
 ## streamlit cloudによる公開
-[公開したアプリ](https://movierecommender-ks5bdb5bjsvusrhyakaogb.streamlit.app/)
+[公開したアプリ](https://movierecommend-m57pe8mfvktsadwdqqbedt.streamlit.app/)
 
-![スクリーンショット](app_screen.png)
-
-公開の仕方は、streamlit cloudの[公式ページ](https://streamlit.io/cloud)を参照。
