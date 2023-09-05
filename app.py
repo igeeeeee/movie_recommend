@@ -21,10 +21,10 @@ movie_id_to_genre = dict(zip(movie_ids, movie_genre))
 
 st.markdown("## 1本の映画に対して似ている映画を表示する")
 
-name = st.text_input('映画の名前を入力(年は不要)', 'Killing, The')
+name = st.text_input('映画の名前を入力(年は不要)', 'Toy Story')
 now_title = ""
 now_cost = 9999999999
-print(name)
+# print(name)
 for titl in movie_titles:
     n = len(name)
     tmp_title = ""
@@ -44,7 +44,7 @@ for titl in movie_titles:
             
             dp[i+1][j+1] = min(dp[i+1][j+1],dp[i+1][j] + 1)
             dp[i+1][j+1] = min(dp[i+1][j+1],dp[i][j+1]+1)
-    print(dp[n][m])
+    # print(dp[n][m])
     if(now_cost > dp[n][m]):
         now_title = titl
         now_cost = dp[n][m]
@@ -82,18 +82,3 @@ results = pd.DataFrame(results)
 
 st.write(results)
 
-
-st.markdown("## 複数の映画を選んでおすすめの映画を表示する")
-
-selected_movies = st.multiselect("映画を複数選んでください", movie_titles)
-selected_movie_ids = [movie_title_to_id[movie] for movie in selected_movies]
-vectors = [model.wv.get_vector(movie_id) for movie_id in selected_movie_ids]
-if len(selected_movies) > 0:
-    user_vector = np.mean(vectors, axis=0)
-    st.markdown(f"### おすすめの映画")
-    recommend_results = []
-    for movie_id, score in model.wv.most_similar(user_vector):
-        title = movie_id_to_title[movie_id]
-        recommend_results.append({"movie_id":movie_id, "title": title, "score": score})
-    recommend_results = pd.DataFrame(recommend_results)
-    st.write(recommend_results)
